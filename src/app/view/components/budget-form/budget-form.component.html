@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+  <div class="col-sm-11">
+
+    <div class="card">
+      <div class="card-header d-flex">
+        <h5 class="me-auto">New budget</h5>
+        <button
+            type="button"
+            class="btn btn-secondary btn-sm ms-2"
+            (click)="gotoBudgetList()"
+            >
+            Back
+        </button>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="budgetForm" id="form-budget" (ngSubmit)="onSubmit()" autocomplete="off">
+          <input autocomplete="off" name="hidden" type="text" style="display:none;">
+          <div class="row">
+
+            <div class="col-sm-6">
+              <label for="inputDescriptionBudget" class="form-label">Budget's Description</label>
+              <input autocomplete="new-description" aria-autocomplete="none" formControlName="description" class="form-control" id="inputDescription">
+              <div *ngIf="budgetForm.controls['description'].invalid && (budgetForm.controls['description'].dirty || budgetForm.controls['description'].touched)" class="text-danger">
+                <small *ngIf="budgetForm.controls['description'].errors?.['required']">
+                  Field required.
+                </small>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+              <label for="inputIdNumberVisitor" class="form-label">Budget's value</label>
+              <input autocomplete="new-value" formControlName="value" class="form-control" id="inputValue" (input)="inputValidatorNumbers($event)">
+              <div *ngIf="budgetForm.controls['value'].invalid && (budgetForm.controls['value'].dirty || budgetForm.controls['value'].touched)" class="text-danger">
+                <small *ngIf="budgetForm.controls['value'].errors?.['required']">
+                  Field required
+                </small>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-2">
+            Create Budget
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+
+

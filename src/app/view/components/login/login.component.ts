@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CreateUserResponse, LoginResponse } from 'src/app/interfaces/HttpResponse.interface';
 import { DataService } from 'src/app/services/data.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -26,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private dataService: DataService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,8 +50,8 @@ export class LoginComponent implements OnInit {
       this.userService.createUser({... this.loginForm.value}).subscribe(
         {
           next: (response: CreateUserResponse) => {
-            const msg = `User Created, Please use the credentials to login`;
-            this.toastService.show(msg, 'success');
+            // const msg = `User Created, Please use the credentials to login`;
+            // this.toastService.show(msg, 'success');
             this.isNewUser = false
           },
           error: (err) => {
@@ -71,9 +73,9 @@ export class LoginComponent implements OnInit {
             console.log(loginResponse);
             this.dataService.userLogged = loginResponse.user;
             this.dataService.activeToken = loginResponse.token;
-            // this.router.navigateByUrl('/home');
-            const msg = `User signed in. Welcome back: ${this.dataService.userLogged.username}`;
-            this.toastService.show(msg, 'success');
+            this.router.navigateByUrl('/budget-list');
+            // const msg = `User signed in. Welcome back: ${this.dataService.userLogged.username}`;
+            // this.toastService.show(msg, 'success');
           },
           error: (err) => {
             this.dataService.userLogged = undefined;

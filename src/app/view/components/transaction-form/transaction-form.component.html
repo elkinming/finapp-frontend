@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+  <div class="col-sm-11">
+
+    <div class="card">
+      <div class="card-header d-flex">
+        <h5 class="me-auto">New transaction</h5>
+        <button
+            type="button"
+            class="btn btn-secondary btn-sm ms-2"
+            (click)="gotoTransactionList()"
+            >
+            Back
+        </button>
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="transactionForm" id="form-budget" (ngSubmit)="onSubmit()" autocomplete="off">
+          <input autocomplete="off" name="hidden" type="text" style="display:none;">
+          <div class="row">
+
+            <div class="col-sm-6">
+              <label for="inputDescriptionBudget" class="form-label">Transaction's Description</label>
+              <input autocomplete="new-description" aria-autocomplete="none" formControlName="description" class="form-control" id="inputDescription">
+              <div *ngIf="transactionForm.controls['description'].invalid && (transactionForm.controls['description'].dirty || transactionForm.controls['description'].touched)" class="text-danger">
+                <small *ngIf="transactionForm.controls['description'].errors?.['required']">
+                  Field required.
+                </small>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+              <label for="inputIdNumberVisitor" class="form-label">Transaction's value</label>
+              <input autocomplete="new-value" formControlName="value" class="form-control" id="inputValue" (input)="inputValidatorNumbers($event)">
+              <div *ngIf="transactionForm.controls['value'].invalid && (transactionForm.controls['value'].dirty || transactionForm.controls['value'].touched)" class="text-danger">
+                <small *ngIf="transactionForm.controls['value'].errors?.['required']">
+                  Field required
+                </small>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-2">
+            Create Transaction
+          </button>
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+
+

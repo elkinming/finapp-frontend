@@ -5,13 +5,13 @@
       FinApp
     </a>
     <div class="navbar-nav">
-      <a class="nav-link active" aria-current="page" href="#">Budget</a>
-      <a class="nav-link" href="#">Finantial Report</a>
+      <a *ngIf="isUserLogged" class="nav-link active">Budget</a>
+      <a *ngIf="isUserLogged" class="nav-link">Finantial Report</a>
     </div>
     <div class="ms-auto">
 
     </div>
-    <span class="fw-medium">Elkin Rativa</span>
-    <button class="btn btn-outline-danger btn-sm ms-4">Logout</button>
+    <span class="fw-medium">{{username}}</span>
+    <button *ngIf="isUserLogged" (click)="logout()" class="btn btn-outline-danger btn-sm ms-4">Logout</button>
   </div>
 </nav>

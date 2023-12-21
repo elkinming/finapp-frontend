@@ -1,7 +1,6 @@
 export const environment = {
-  production: false,
-  systemUserAPI: 'https://pepsico.vm-system-pr.com/api',
-  visitorAPI: 'https://pepsico.vm-system-pr.com/api',
-  visitRecordAPI: 'https://pepsico.vm-system-pr.com/api',
-  reportAPI: 'https://pepsico.vm-system-pr.com/api',
+  production: true,
+  userAPI: 'https://fierce-inlet-83709-64d4e2ac3457.herokuapp.com',
+  budgetAPI: 'https://fierce-inlet-83709-64d4e2ac3457.herokuapp.com',
+  transactionAPI: 'https://fierce-inlet-83709-64d4e2ac3457.herokuapp.com'
 };

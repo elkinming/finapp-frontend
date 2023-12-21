@@ -1,0 +1,49 @@
+<div class="card h-100 mt-3">
+
+  <div class="card-header d-flex">
+    <h5 class="me-auto">Budget list</h5>
+    <button (click)="gotoBudgetForm()" class="btn btn-primary btn-sm">New budget</button>
+  </div>
+
+  <div class="card-body">
+
+    <div *ngIf="budgets.length == 0" class="text-center mt-4">
+      <h5>No budgets to show</h5>
+    </div>
+
+    <div *ngIf="budgets.length > 0" class="table-responsive-md">
+
+      <table class="table table-striped table-hover">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">#</th>
+            <th style="width: 25%;" scope="col">Budget Description</th>
+            <th scope="col">Budget Value</th>
+            <th scope="col" class="w-col-action">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let budget of budgets; index as i">
+			      <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ budget.description }}
+            </td>
+            <td>{{ budget.value | currency : 'USD' }}   </td>
+            <td>
+
+              <button class="btn btn-outline-primary btn-sm" (click)="gotoBudgetDetails(budget)">
+                <i class="bi bi-currency-exchange"></i>
+                Details
+              </button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+
+
