@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-sm-8 col-md-5">
+
+    <div class="card">
+      <img src="assets/img/user-icon-2.png" class="card-img-top img-login" alt="...">
+      <div class="card-body">
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">{{labelUsername}}</label>
+            <input formControlName="username" type="text" class="form-control" id="username" aria-describedby="username" >
+            <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)" class="text-danger">
+              <small *ngIf="loginForm.controls['username'].errors?.['required']">
+                Field required.
+              </small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="inputPassword1" class="form-label">{{labelPassword}}</label>
+            <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+            <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" class="text-danger">
+              <small *ngIf="loginForm.controls['password'].errors?.['required']">
+                Field required.
+              </small>
+            </div>
+          </div>
+          <div *ngIf="isNewUser" class="mb-3">
+            <label for="inputPassword2" class="form-label">Repeat Password</label>
+            <input formControlName="password2" type="password" class="form-control" id="exampleInputPassword2">
+            <div *ngIf="loginForm.controls['password2'].invalid && (loginForm.controls['password2'].dirty || loginForm.controls['password2'].touched)" class="text-danger">
+              <small *ngIf="loginForm.controls['password2'].errors?.['required']">
+                Field required.
+              </small>
+            </div>
+            <div *ngIf="loginForm.controls['password2'].dirty || loginForm.controls['password2'].touched" class="text-danger">
+              <small *ngIf="!checkPasswordMatch()">
+                Both Passwords have to be same.
+              </small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            {{labelButtonSubmit}}
+          </button>
+          <p class="mt-2">
+            <a *ngIf="!isNewUser" class="text-primary label-pointer" (click)="changeToNewUserForm()" >Create new user</a>
+            <a *ngIf="isNewUser" class="text-danger label-pointer" (click)="changeToLoginForm()" >Cancel</a>
+          </p>
+          <!-- <button class="btn btn-primary" (click)="test()">Test Printer</button> -->
+        </form>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
