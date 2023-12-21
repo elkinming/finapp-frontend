@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
       this.userService.createUser({... this.loginForm.value}).subscribe(
         {
           next: (response: CreateUserResponse) => {
-            // const msg = `User Created, Please use the credentials to login`;
-            // this.toastService.show(msg, 'success');
+            const msg = `User Created, Please use the credentials to login`;
+            this.toastService.show(msg, 'success');
             this.isNewUser = false
           },
           error: (err) => {
